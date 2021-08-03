@@ -4,6 +4,7 @@ import './App.css';
 import { useLocation } from 'react-router-dom';
 import { createApi } from "unsplash-js";
 import { GoogleMap, useJsApiLoader } from '@react-google-maps/api';
+import Search from './Search';
 
 
 function Results() {
@@ -42,63 +43,67 @@ function Results() {
 
   var pics = location.state as Array<Object>;
   return (
-    <div className="card-list">
-      {showDetail ?
-        (<div className='popup'>
-          <div className='popup-inner'>
-            <button onClick={() => setShowDetail(false)}>close me</button>
-            <img
-              className="card--image"
-              alt={selectedPic.alt_description}
-              src={selectedPic.urls.full}
-              width="100%"
+    <div >
+      <Search calling='results' />
+      <div className="card-list">
 
-            ></img>
-            <div>
-              <span className="user">{selectedPic.user.name}</span>
-              <button className="download-button" onClick={() => download()}>
-              <img src={downloadIcon} className="amphibian" alt="amphibian" />
-                
-                Download</button>
+        {showDetail ?
+          (<div className='popup'>
+            <div className='popup-inner'>
+              <button onClick={() => setShowDetail(false)}>close me</button>
+              <img
+                className="card--image"
+                alt={selectedPic.alt_description}
+                src={selectedPic.urls.full}
+                width="100%"
+
+              ></img>
+              <div>
+                <span className="user">{selectedPic.user.name}</span>
+                <button className="download-button" onClick={() => download()}>
+                  <img src={downloadIcon} className="amphibian" alt="amphibian" />
+
+                  Download</button>
+              </div>
+              {isLoaded && selectedPic.location ? (
+                <div onClick={() => <a href="http://maps.google.com/maps?saddr=New+York&daddr=San+Francisco">Route New York -- San Francisco</a>
+                }>
+                  <GoogleMap
+                    mapContainerStyle={{
+                      width: '100%',
+                      height: '400px'
+                    }}
+                    center={{
+                      lat: selectedPic.location.position.latitude,
+                      lng: selectedPic.location.position.longitude
+                    }}
+                    zoom={10}
+                    onLoad={onLoad}
+                    onUnmount={onUnmount}
+                  >
+                    { /* Child components, such as markers, info windows, etc. */}
+                    <></>
+                  </GoogleMap></div>
+              ) : <></>}
+              <span>{selectedPic.user.location}</span>
             </div>
-            {isLoaded && selectedPic.location ? (
-              <div onClick={() => <a href="http://maps.google.com/maps?saddr=New+York&daddr=San+Francisco">Route New York -- San Francisco</a>
-              }>
-                <GoogleMap
-                  mapContainerStyle={{
-                    width: '100%',
-                    height: '400px'
-                  }}
-                  center={{
-                    lat: selectedPic.location.position.latitude,
-                    lng: selectedPic.location.position.longitude
-                  }}
-                  zoom={10}
-                  onLoad={onLoad}
-                  onUnmount={onUnmount}
-                >
-                  { /* Child components, such as markers, info windows, etc. */}
-                  <></>
-                </GoogleMap></div>
-            ) : <></>}
-            <span>{selectedPic.user.location}</span>
-          </div>
-        </div>)
-        : null}
-      {
-        pics.map((pic: any, i: any) =>
-          <div key={i} className="card" onClick={() => { setSelectedPic(pic); setShowDetail(true); console.log(pic) }}>
-            <img
-              className="card--image"
-              alt={pic.alt_description}
-              src={pic.urls.full}
-              width="50%"
-              height="50%"
-            ></img>
-
           </div>)
-      }
-    </div >
+          : null}
+        {
+          pics.map((pic: any, i: any) =>
+            <div key={i} className="card" onClick={() => { setSelectedPic(pic); setShowDetail(true); console.log(pic) }}>
+              <img
+                className="card--image"
+                alt={pic.alt_description}
+                src={pic.urls.full}
+                width="50%"
+                height="50%"
+              ></img>
+
+            </div>)
+        }
+      </div >
+    </div>
   );
 }
 

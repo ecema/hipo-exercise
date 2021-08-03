@@ -1,11 +1,16 @@
 import React from 'react';
-import amphibian from './amphibian-chameleon-2.png'
+import Search from './Search';
 import './App.css';
+import noFound from './tom-unsplash.jpg'
 
 function Home() {
   return (
-    <div className="App">
-    
+    <div style={{backgroundColor: "#050417"}}>
+      <Search calling='error' />
+      <img src={noFound} className="noFound" alt="noFound" /> 
+      <span className="error"> No photo found related to query & category</span>
+     
+
 
     </div>
   );
