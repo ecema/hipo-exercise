@@ -13,14 +13,13 @@ function Home() {
     accessKey: "ZNSY0Eh9GhFKeOrkxRQeYWk8105EqJt2c4-ny2Zu6Lo"
   });
 
-  function search(collection: any) {
-    setCollection(collection);
+  function search() {
     api.search.getPhotos({ collectionIds: [collection], query: query }).then(result => {
       if (result.response?.results && result.response.results.length > 0)
         history.push({
           pathname: '/results',
           search: '?query=' + query + '?collectionId=' + collection,
-          state: result.response?.results 
+          state: result.response?.results
         })
       else history.push("/error")
     })
@@ -48,16 +47,18 @@ function Home() {
           <b>Image</b> Search
         </p>
       </div>
+
       <div className="location">
         <input className="query" type="text" value={query} onChange={(val: any) => setQuery(val.target.value)} placeholder={"Query"} />
       </div>
       <div className="dropdown">
-        <select className="dropdown" value={collection} onChange={(val: any) => { search(val.target.value); }}>
+        <select className="dropdown" value={collection} onChange={(val: any) => { setCollection(val.target.value); }}>
           {collections.map((collection: any, i: any) => (
             <option key={i} value={collection.id}>{collection.title}</option>
           ))}
         </select>
       </div>
+      <button className="button" onClick={() => search()}>SEARCH</button>
     </div>
   );
 }
