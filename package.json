@@ -14,8 +14,10 @@
     "google-map-react": "^2.1.10",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
+    "react-loading": "^2.0.3",
     "react-router-dom": "^5.2.0",
     "react-scripts": "4.0.3",
+    "react-select": "^4.3.1",
     "typescript": "^4.1.2",
     "unsplash-js": "^7.0.15",
     "web-vitals": "^1.0.1"
@@ -46,6 +48,7 @@
   },
   "devDependencies": {
     "@types/google-maps-react": "^2.0.5",
-    "@types/react-router-dom": "^5.1.8"
+    "@types/react-router-dom": "^5.1.8",
+    "@types/react-select": "^4.0.17"
   }
 }

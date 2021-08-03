@@ -1,3 +1,7 @@
+.container {
+    align-items: center;
+}
+
 .search-page {
     text-align: center;
     background-color: #050417;
@@ -16,6 +20,14 @@
     flex-direction: row;
     align-items: center;
     justify-content: space-evenly;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+.error-page {
+    min-height: 100vh;
+    background-color: #050417;
 }
 
 .logo {
@@ -76,10 +88,20 @@
     border-radius: 5px;
 }
 
+.options {
+    background-color: #FFFFFF;
+    box-shadow: 0px 4px 13px rgba(0, 0, 0, 0.1);
+    border-radius: 4px;
+}
+
+.form {
+    display: grid;
+}
+
 .card-list {
     column-count: 3;
-    padding: 50px;
-    box-sizing: border-box;
+    padding: 50px 250px 50px 250px;
+    flex-direction: column;
 }
 
 .card {
@@ -89,6 +111,12 @@
 
 .card--image {
     flex: 100%;
+}
+
+.profile-image {
+    width: 50px;
+    height: 50px;
+    border-radius: 25px;
 }
 
 .popup {
@@ -105,10 +133,10 @@
 
 .popup-inner {
     position: absolute;
-    left: 25%;
-    right: 25%;
-    top: 12.5%;
-    bottom: 12.5%;
+    left: 30%;
+    right: 30%;
+    top: 25%;
+    bottom: 5%;
     padding: 25px;
     background: white;
     align-items: center;
@@ -119,6 +147,7 @@
 }
 
 .popup-inner-row {
+    display: flex;
     flex-direction: row;
     justify-content: space-between;
 }
@@ -138,8 +167,8 @@
 }
 
 .download-button {
-    width: 200px;
-    height: 60px;
+    width: 180px;
+    height: 50px;
     background: #FFFFFF;
     border: 2px solid #2A2B8D;
     box-sizing: border-box;
@@ -150,9 +179,50 @@
     line-height: 25px;
     /* identical to box height */
     color: #2A2B8D;
+    float: right;
 }
 
-.user {
+.download-icon {
+    margin-right: 20px;
+    width: 15px;
+}
+
+.close-button {
+    width: 60px;
+    height: 30px;
+    background: rgba(5, 4, 23, 0.8);
+    border-radius: 15px;
+    border: none;
+    color: white;
+    font-weight: bolder;
+    float: right;
+    margin: -20px -20px 5px 0;
+}
+
+.pagination-button {
+    width: 93px;
+    height: 42px;
+    background: #FFFFFF;
+    /* #D5D7E5 */
+    border: 1px solid #D5D7E5;
+    box-sizing: border-box;
+    border-radius: 2px;
+    font-family: Open Sans;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 14px;
+    line-height: 19px;
+    /* identical to box height */
+    /* #2A2B8D */
+    color: #2A2B8D;
+}
+
+.user-info {
+    display: flex;
+    flex-direction: column;
+}
+
+.user-text {
     font-style: normal;
     font-weight: bold;
     font-size: 24px;
@@ -161,8 +231,13 @@
     color: #000000;
 }
 
-.form {
-    display: grid;
+.social-text {
+    font-style: normal;
+    font-weight: bold;
+    font-size: 16px;
+    line-height: 41px;
+    /* identical to box height */
+    color: #2A2B8D;
 }
 
 .label {
@@ -218,10 +293,36 @@
     }
 }
 
+@media only screen and (max-width: 400px) {
+    .query {
+        width: 100px;
+    }
+    .dropdown {
+        width: 100px;
+    }
+    .button {
+        width: 100px;
+    }
+    .error {
+        font-size: 24px;
+    }
+}
+
 @media only screen and (max-width: 600px) {
     .card-list {
         column-count: 1;
+        padding: 50px 50px 50px 50px;
     }
+}
+
+@media only screen and (max-width: 960px) and (min-width: 600px) {
+    .card-list {
+        column-count: 2;
+        padding: 50px 50px 50px 50px;
+    }
+}
+
+@media only screen and (max-width: 960px) {
     .search-bar {
         text-align: center;
         background-color: #050417;
@@ -233,16 +334,22 @@
     }
 }
 
-@media only screen and (max-width: 960px) {
-    .card-list {
-        column-count: 2;
+@media only screen and (max-width: 1050px) and (min-width: 600px) {
+    .query {
+        width: 200px;
+    }
+    .dropdown {
+        width: 200px;
+    }
+    .button {
+        width: 100px;
     }
     .search-bar {
         text-align: center;
         background-color: #050417;
-        min-height: 40vh;
+        min-height: 20vh;
         display: flex;
-        flex-direction: column;
+        flex-direction: row;
         align-items: center;
         justify-content: space-evenly;
     }
