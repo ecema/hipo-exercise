@@ -39,7 +39,7 @@ function Results() {
       setLoading(false);
       if (result.response?.results && result.response.results.length > 0) {
         setPics(result.response.results)
-        setTotalPage(result.total_pages)
+        setTotalPage(result.response.total_pages)
         setCurrentPage(pageNum)
       }
 
@@ -51,18 +51,10 @@ function Results() {
       });
     setLoading(true);
   }
-  // function goBack() {
-  //   setCurrentPage(prev => prev - 1);
-  //   search();
-  // }
-  // function goNext() {
-  //   setCurrentPage(prev => prev + 1);
-  //   search();
-  // }
 
   useEffect(() => {
     search(0);
-  }, []);
+  }, [location]);
 
   const onLoad = React.useCallback(function callback(map) {
     // const bounds = new window.google.maps.LatLngBounds();
@@ -172,7 +164,7 @@ function Results() {
             <button disabled={currentPage === 1} className="pagination-button" onClick={() => search(-1)}>
               <span>Back</span>
             </button>
-            {/* <span className="social-text">{currentPage}</span> */}
+            {/* <span className="social-text">{currentPage} of {totalPage}</span> */}
             <button disabled={currentPage < totalPage} className="pagination-button" onClick={() => search(1)}>
               <span>Next</span>
             </button>
