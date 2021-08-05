@@ -23,7 +23,6 @@ function Results() {
   const location = useLocation();
   const [map, setMap] = useState(null)
   const [pics, setPics] = useState([] as any)
-
   const [currentPage, setCurrentPage] = useState(1);
   const [totalPage, setTotalPage] = useState(1);
 
@@ -42,11 +41,9 @@ function Results() {
         setTotalPage(result.response.total_pages)
         setCurrentPage(pageNum)
       }
-
       else history.push("/error")
     })
-      .catch((err) => {
-        console.log(err);
+      .catch(() => {
         history.push("/error")
       });
     setLoading(true);
@@ -72,8 +69,7 @@ function Results() {
   });
 
   function download() {
-    api.photos.trackDownload({ downloadLocation: selectedPic.links.download_location })
-    // .then(res => console.log(res)).catch(err => console.log(err))
+    api.photos.trackDownload({ downloadLocation: selectedPic.links.download_location }).then(res => console.log(res)).catch(err => console.log(err))
   }
 
   return (
@@ -130,7 +126,6 @@ function Results() {
                           onLoad={onLoad}
                           onUnmount={onUnmount}
                         >
-                          { /* Child components, such as markers, info windows, etc. */}
                           <></>
                         </GoogleMap></div>
                     ) : <></>}
@@ -138,14 +133,12 @@ function Results() {
                       <img src={union} className="download-icon" alt="downloadIcon" />
                       <span>{selectedPic.user.location}</span>
                     </div>
-
                   </div>
                 </div>)
                 : null}
-
               {
                 pics.map((pic: any, i: any) =>
-                  <div key={i} className="card" onClick={() => { setSelectedPic(pic); setShowDetail(true); console.log(pic) }}>
+                  <div key={i} className="card" onClick={() => { setSelectedPic(pic); setShowDetail(true); }}>
                     <img
                       className="card--image"
                       alt={pic.alt_description}
@@ -153,12 +146,9 @@ function Results() {
                       width="50%"
                       height="50%"
                     ></img>
-
                   </div>)
               }
-
             </div>
-
           </div>
           <div className="pagination-buttons">
             <button disabled={currentPage === 1} className="pagination-button" onClick={() => search(-1)}>
@@ -171,7 +161,6 @@ function Results() {
           </div>
         </div>
       }
-
     </div>
   );
 }

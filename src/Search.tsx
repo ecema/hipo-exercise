@@ -1,8 +1,10 @@
 import { useEffect, useState } from 'react';
-import amphibian from './amphibian.svg'
+import amphibian from './amphibian.svg';
+import polygon from './polygon.svg';
 import './App.css';
 import { createApi } from "unsplash-js";
 import { useHistory } from 'react-router-dom';
+import Select from 'react-select';
 
 function Search(props: any) {
 
@@ -13,12 +15,12 @@ function Search(props: any) {
   const api = createApi({
     accessKey: "ZNSY0Eh9GhFKeOrkxRQeYWk8105EqJt2c4-ny2Zu6Lo"
   });
-  
+
   function search() {
     history.push({
       pathname: '/results',
       search: '?query=' + query + '?collectionId=' + collection,
-      state: {query: query, collection:collection}
+      state: { query: query, collection: collection }
     })
   }
 
@@ -34,6 +36,10 @@ function Search(props: any) {
       });
   }, []);
 
+  function arrowRenderer() {
+    return <img src={polygon} className="polygon" alt="polygon" />
+  }
+
   return (
     <div className={props.calling === 'home' ? "search-page" : "search-bar"}>
       <div className="logo" onClick={() => history.push("/")}>
@@ -43,29 +49,17 @@ function Search(props: any) {
         </p> : null}
       </div>
 
-      <div className="location">
-        <input className="query" type="text" value={query} onChange={(val: any) => setQuery(val.target.value)} placeholder={"Query"} />
-      </div>
-
-      <div className="dropdown">
-        <select placeholder="Collection" className="dropdown" value={collection} onChange={(val: any) => { setCollection(val.target.value); }}>
-          <option className="options" value=''></option>
-          {collections.map((collection: any, i: any) => (
-            <option className="options" key={i} value={collection.id}>{collection.title}</option>
-          ))}
-        </select>
-      </div>
+      <input className="query" type="text" value={query} onChange={(val: any) => setQuery(val.target.value)} placeholder={"Query"} />
+      <Select
+        options={collections.map((i: any) => { return { label: i.title, value: i.id } })}
+        placeholder={'Collections'}
+        className="dropdown"
+        arrowRenderer={arrowRenderer}
+      />
+      {props.calling === 'home' ? <div className="shadow"></div> : null}
+      
       <button className="button" onClick={() => search()}>SEARCH</button>
-      {/* <Select
-        options={collections.map((i: any) => i.title)}
-        placeholder={'Select something'}
-        clearable={false}
-        style={{
-          fontSize: 14,
-          color: 'blue',
-          width: '400px'
-        }}
-      /> */}
+
     </div>
   );
 }

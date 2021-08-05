@@ -1,10 +1,4 @@
-import React from 'react';
-import {
-  BrowserRouter as Router,
-  Switch,
-  Route,
-  Link
-} from "react-router-dom";
+import { Switch, Route } from "react-router-dom";
 
 import './App.css';
 import Home from './Home';
@@ -17,7 +11,7 @@ function App() {
       <Switch>
         <Route path="/" component={Home} exact />
         <Route path="/results" component={Results} />
-        <Route component={Error} />
+        <Route path="/error" component={Error} />
       </Switch>
     </main>
   );
