@@ -13,21 +13,13 @@ function Search(props: any) {
   const api = createApi({
     accessKey: "ZNSY0Eh9GhFKeOrkxRQeYWk8105EqJt2c4-ny2Zu6Lo"
   });
-
+  
   function search() {
-    api.search.getPhotos({ collectionIds: [collection], query: query }).then(result => {
-      console.log(result.response);
-      if (result.response?.results && result.response.results.length > 0)
-        history.push({
-          pathname: '/results',
-          search: '?query=' + query + '?collectionId=' + collection,
-          state: result.response?.results
-        })
-      else history.push("/error")
+    history.push({
+      pathname: '/results',
+      search: '?query=' + query + '?collectionId=' + collection,
+      state: {query: query, collection:collection}
     })
-      .catch((err) => {
-        history.push("/error")
-      });
   }
 
   useEffect(() => {
@@ -40,7 +32,6 @@ function Search(props: any) {
       .catch(() => {
         console.log("something went wrong!");
       });
-
   }, []);
 
   return (
@@ -65,7 +56,6 @@ function Search(props: any) {
         </select>
       </div>
       <button className="button" onClick={() => search()}>SEARCH</button>
-
       {/* <Select
         options={collections.map((i: any) => i.title)}
         placeholder={'Select something'}
