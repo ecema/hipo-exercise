@@ -1,8 +1,11 @@
+import React from 'react';
 import {
-  BrowserRouter as 
+  BrowserRouter as Router,
   Switch,
-  Route
+  Route,
+  Link
 } from "react-router-dom";
+
 import './App.css';
 import Home from './Home';
 import Results from './Results';
