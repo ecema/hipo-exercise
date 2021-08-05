@@ -55,11 +55,10 @@ function Search(props: any) {
         placeholder={'Collections'}
         className="dropdown"
         arrowRenderer={arrowRenderer}
+        onChange={(val: any) => setCollection(val.value)}
       />
       {props.calling === 'home' ? <div className="shadow"></div> : null}
-      
       <button className="button" onClick={() => search()}>SEARCH</button>
-
     </div>
   );
 }
