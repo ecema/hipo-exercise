@@ -30,7 +30,6 @@ function Search(props: any) {
       .list({ page: randomPage, perPage: 10 })
       .then(result => {
         setCollections(result.response?.results.map(({ title, id }) => ({ title, id })))
-        console.log(collections)
       })
       .catch(() => {
         setCollections([{ title: "Blurred/in motion", id: "3582397" },

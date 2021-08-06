@@ -70,7 +70,6 @@ function Results() {
 
   function download() {
     api.photos.trackDownload({ downloadLocation: selectedPic.links.download_location })
-    //.then(res => console.log(res)).catch(err => console.log(err))
   }
 
   return (
