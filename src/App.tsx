@@ -1,9 +1,9 @@
 import { Switch, Route } from "react-router-dom";
 
 import './App.css';
-import Home from './Home';
-import Results from './Results';
-import Error from './Error';
+import Home from './components/Home';
+import Results from './components/Results';
+import Error from './components/Error';
 
 function App() {
   return (

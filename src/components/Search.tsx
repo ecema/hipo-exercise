@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
-import amphibian from './amphibian.svg';
-import polygon from './polygon.svg';
-import './App.css';
+import amphibian from './../images/amphibian.svg';
+import polygon from './../images/polygon.svg';
+import './../App.css';
 import { createApi } from "unsplash-js";
 import { useHistory } from 'react-router-dom';
 import Select from 'react-select';
@@ -30,9 +30,19 @@ function Search(props: any) {
       .list({ page: randomPage, perPage: 10 })
       .then(result => {
         setCollections(result.response?.results.map(({ title, id }) => ({ title, id })))
+        console.log(collections)
       })
       .catch(() => {
-        console.log("something went wrong!");
+        setCollections([{ title: "Blurred/in motion", id: "3582397" },
+        { title: "Floral Beauty", id: "17098" },
+        { title: "Summer Tones", id: "583479" },
+        { title: "International Women's Day", id: "4403603" },
+        { title: "Light-Washed Tones", id: "1020268" },
+        { title: "Double Exposures", id: "1632080" },
+        { title: "Flowers Contained", id: "1988224" },
+        { title: "Brands", id: "2351409" },
+        { title: "Women Are Amazing", id: "4386752" },
+        { title: "Backgrounds / Textures", id: "1368747" }])
       });
   }, []);
 

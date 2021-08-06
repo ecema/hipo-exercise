@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import downloadIcon from './download-arrow-1.2.svg'
-import union from './union.svg'
-import './App.css';
+import downloadIcon from './../images/download-arrow-1.2.svg'
+import union from './../images/union.svg'
+import './../App.css';
 import { useLocation } from 'react-router-dom';
 import { createApi } from "unsplash-js";
 import { GoogleMap, useJsApiLoader } from '@react-google-maps/api';
@@ -13,7 +13,7 @@ function Results() {
   const history = useHistory();
   const [selectedPic, setSelectedPic] = useState({
     alt_description: "", urls: { full: "" },
-    user: { name: "", location: "", social: { instagram_username: "" }, profile_image: { small: "" } },
+    user: { name: "", location: "", social: { instagram_username: "" }, profile_image: { large: "" } },
     links: { download_location: "" },
     location: { position: { latitude: 0, longitude: 0 } },
   });
@@ -99,12 +99,12 @@ function Results() {
                       <img
                         className="profile-image"
                         alt={selectedPic.alt_description}
-                        src={selectedPic.user.profile_image.small}
+                        src={selectedPic.user.profile_image.large}
                         width="100%"
                       ></img>
                       <div className="user-info">
                         <span className="user-text">{selectedPic.user.name}</span>
-                        <span className="social-text">{selectedPic.user.social.instagram_username}</span>
+                        <span className="social-text">@{selectedPic.user.social.instagram_username}</span>
                       </div>
                       <button className="download-button" onClick={() => download()}>
                         <img src={downloadIcon} className="download-icon" alt="downloadIcon" />
@@ -156,7 +156,7 @@ function Results() {
               <span>Back</span>
             </button>
             {/* <span className="social-text">{currentPage} of {totalPage}</span> */}
-            <button disabled={currentPage < totalPage} className="pagination-button" onClick={() => search(1)}>
+            <button disabled={!(currentPage < totalPage)} className="pagination-button" onClick={() => search(1)}>
               <span>Next</span>
             </button>
           </div>

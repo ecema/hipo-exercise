@@ -1,8 +1,8 @@
 import Search from './Search';
-import './App.css';
-import noFound from './tom-unsplash.jpg'
+import './../App.css';
+import noFound from './../images/tom-unsplash.jpg'
 
-function Home() {
+function Error() {
   return (
     <div className="error-page">
       <Search calling='error' />
@@ -12,4 +12,4 @@ function Home() {
   );
 }
 
-export default Home;
+export default Error;
